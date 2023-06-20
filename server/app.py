@@ -56,6 +56,7 @@ class OneScientist(Resource):
         #if no corresponding scientist was found
         if not q:
             abort(404, "Scientist not found")
+            #return make_response({"error": "not found"}, 404)
         return make_response(q.to_dict(only=('id', 'name', 'avatar', 'field_of_study')), 200)
     def patch(self, id):
         q = Scientist.query.filter_by(id=id).first()
