@@ -26,6 +26,17 @@ class Scientist(db.Model, SerializerMixin):
 
     serialize_rules = ('-created_at', '-updated_at', '-missions.scientist', '-planets.scientists')
 
+    @validates('name')
+    def validate_name(self, key, name):
+        if not name:
+            raise ValueError('must have a name')
+        scientists = Scientist.query.all()
+        for s in scientists:
+            if name == s.name:
+                raise ValueError('scientists name must be unique')
+        return name
+
+
     def __repr__(self):
         return f'<Scientist {self.id} {self.name} />'
 

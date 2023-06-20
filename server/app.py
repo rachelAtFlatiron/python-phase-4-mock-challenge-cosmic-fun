@@ -35,13 +35,16 @@ class Scientists(Resource):
     def post(self):
         data = request.get_json()
         try:
-            s = Scientist(name=data.get('name'), field_of_study=data.get('field_of_study'), avatar=data.get('avatar'))
-            db.session.add(s)
+            scientist = Scientist(name=data.get('name'), field_of_study=data.get('field_of_study'), avatar=data.get('avatar'))
+            #import ipdb; ipdb.set_trace()
+
+
+            db.session.add(scientist)
             db.session.commit()
         except Exception: 
             #abort(422, "validation errors")
             return make_response({"errors": ["validation errors"]}, 422)
-        return make_response(s.to_dict(only=('id', 'name', 'field_of_study', 'avatar')), 201)
+        return make_response(scientist.to_dict(only=('id', 'name', 'field_of_study', 'avatar')), 201)
 api.add_resource(Scientists, '/scientists')
 
 class OneScientist(Resource):
