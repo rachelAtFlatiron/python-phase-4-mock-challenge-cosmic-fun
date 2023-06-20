@@ -10,20 +10,3 @@ metadata = MetaData(naming_convention={
 
 db = SQLAlchemy(metadata=metadata)
 
-
-class Mission(db.Model, SerializerMixin):
-    __tablename__ = 'missions'
-
-    id = db.Column(db.Integer, primary_key=True)
-
-
-class Scientist(db.Model, SerializerMixin):
-    __tablename__ = 'scientists'
-
-    id = db.Column(db.Integer, primary_key=True)
-
-
-class Planet(db.Model, SerializerMixin):
-    __tablename__ = 'planets'
-
-    id = db.Column(db.Integer, primary_key=True)
