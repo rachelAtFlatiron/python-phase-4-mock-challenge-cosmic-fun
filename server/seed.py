@@ -85,7 +85,7 @@ def make_missions():
     for i in range(20):
         mission = Mission(
             name=fake.unique.text(max_nb_chars=20),
-            scientist_id=rc(scientists)[0],
+            scientist_id=rc(scientists)[0], #scientists = rc(scientists)...
             planet_id=rc(planets)[0]
         )
         missions.append(mission)
